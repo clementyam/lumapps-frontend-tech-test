@@ -1,9 +1,9 @@
 export interface Character {
   id: number;
   name: string;
-  species: string;
-  birthYear: string;
-  description: string;
+  species?: string;
+  birthYear?: string;
+  description?: string;
   imageUrl?: string;
   affiliations: string[];
 }

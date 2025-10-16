@@ -4,8 +4,8 @@ export const handlers = [
   http.get('/api/characters', ({ request }) => {
     const url = new URL(request.url);
     const searchName = url.searchParams.get('name') || '';
-    const page = parseInt(url.searchParams.get('page') || '1', 10);
-    const pageSize = parseInt(url.searchParams.get('limit') || '10', 10);
+    const pageParam = url.searchParams.get('page');
+    const limitParam = url.searchParams.get('limit');
     let filteredData = allCharacters;
     if (searchName) {
       const lowerSearchName = searchName.toLowerCase();
@@ -13,6 +13,19 @@ export const handlers = [
         character.name.toLowerCase().includes(lowerSearchName)
       );
     }
+
+    if (!pageParam || !limitParam) {
+      return HttpResponse.json({
+        results: filteredData,
+        total: filteredData.length,
+        page: 1,
+        limit: filteredData.length,
+        next: null,
+        previous: null,
+      }, { status: 200 });
+    }
+    const page = parseInt(pageParam, 10);
+    const pageSize = parseInt(limitParam, 10);
     const totalCount = filteredData.length;
     const totalPages = Math.ceil(totalCount / pageSize);
     const startIndex = (page - 1) * pageSize;
