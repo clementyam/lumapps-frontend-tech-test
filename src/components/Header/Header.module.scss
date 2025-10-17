@@ -1,0 +1,14 @@
+$primary-color: #20232a;
+$text-color: white;
+
+.header {
+  padding: 10px 20px;
+  background-color: #f8f8f8; // Light gray background
+  border-bottom: 1px solid #ddd;
+  min-height: 50px; // Ensure a standard height
+
+  .logo img {
+    height: 100px;
+  }
+}
+

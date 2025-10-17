@@ -1,4 +1,4 @@
-@import '~@lumx/core/scss/lumx.scss';
+@import '@lumx/core/scss/lumx.scss';
 
 body {
   margin: 0;
@@ -13,7 +13,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-@import './App/App.scss';
-@import './components/Header/index.scss';
-@import './components/Search/index.scss';
