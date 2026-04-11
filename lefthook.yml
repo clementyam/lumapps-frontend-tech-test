@@ -8,4 +8,4 @@ pre-commit:
 pre-push:
   commands:
     rtl-tests:
-      run: npx vitest run
+      run: yarn test run
