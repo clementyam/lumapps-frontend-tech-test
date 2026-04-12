@@ -1,6 +1,5 @@
 import { Button, FlexBox, List, ListItem, Select } from "@lumx/react"
 import React, { Dispatch, SetStateAction, useState } from "react"
-import styles from "./Pagination.module.scss"
 
 const CHOICES = [4, 10, 20]
 
@@ -28,14 +27,7 @@ export const Pagination: React.FC<PaginationProps> = ({
 	const toggleSelect = () => setOpen(!isOpen)
 
 	return (
-		<FlexBox
-			orientation="horizontal"
-			vAlign="space-between"
-			hAlign="bottom"
-			className={styles.pagination}
-			wrap
-			gap="medium"
-		>
+		<FlexBox orientation="horizontal" vAlign="space-between" hAlign="bottom" wrap gap="medium">
 			<Select
 				isOpen={isOpen}
 				value={itemsPerPage.toString()}
