@@ -50,6 +50,7 @@ export const Pagination: React.FC<PaginationProps> = ({
 							key={`itemsPerPage-option-${index}`}
 							onItemSelected={() => {
 								setItemsPerPage(Number(choice))
+								setPage(1)
 								window.scrollTo(0, 0)
 							}}
 							size="tiny"

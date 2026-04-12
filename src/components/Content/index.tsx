@@ -40,8 +40,9 @@ export const Content: React.FC = () => {
 		return (
 			<>
 				<h1>Characters list :</h1>
-				<CharacterList characters={characters} />
 				<section>
+					<CharacterList characters={characters} />
+
 					<Pagination
 						itemsPerPage={itemsPerPage}
 						setItemsPerPage={setItemsPerPage}

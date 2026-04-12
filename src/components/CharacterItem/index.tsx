@@ -11,7 +11,7 @@ interface CharacterItemProps {
 export const CharacterItem: React.FC<CharacterItemProps> = ({ character }) => {
 	return (
 		<ListItem key={character.id} size="huge" className={styles.listItem}>
-			<div className={styles.informations}>
+			<div className={styles.container}>
 				<div className={styles.character}>
 					{character.imageUrl ? (
 						<img src={character.imageUrl} alt={character.name} />
@@ -21,7 +21,7 @@ export const CharacterItem: React.FC<CharacterItemProps> = ({ character }) => {
 						</FlexBox>
 					)}
 				</div>
-				<FlexBox orientation="vertical" gap="medium">
+				<FlexBox orientation="vertical" gap="medium" className={styles.informations}>
 					<h2>{character.name}</h2>
 					<Text as="p">{character.description}</Text>
 					<ReactionList reactions={character.reactions} />
