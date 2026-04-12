@@ -1,6 +1,6 @@
 import { FlexBox, ListItem, Text } from "@lumx/react"
 import React from "react"
-import { CharacterWithReactions } from "../../api/hooks/useGetCharacters"
+import { CharacterWithReactions } from "../../../api/hooks/useGetCharacters"
 import { ReactionList } from "../CharacterReactionList"
 import styles from "./CharacterItem.module.scss"
 
