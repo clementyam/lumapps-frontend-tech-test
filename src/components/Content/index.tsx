@@ -1,43 +1,48 @@
-import { FlexBox, List, ListItem } from "@lumx/react"
+import { FlexBox, SkeletonRectangle, Text } from "@lumx/react"
 import React from "react"
 import { useGetCharacters } from "../../api/hooks/useGetCharacters"
 import { useCharacterSearch } from "../../hooks/use-characters-search"
+import { CharacterList } from "../CharacterList"
 import { Pagination } from "../Pagination"
-import styles from "./Content.module.scss"
 
 export const Content: React.FC = () => {
 	const [characterSearch] = useCharacterSearch()
 
-	const { characters, itemsPerPage, setItemsPerPage, disabledNext, disabledPrev, totalPages, page, setPage } =
-		useGetCharacters({ name: characterSearch })
+	const {
+		characters,
+		itemsPerPage,
+		setItemsPerPage,
+		disabledNext,
+		disabledPrev,
+		totalPages,
+		page,
+		setPage,
+		isPendingCharacters,
+		errorCharacters,
+	} = useGetCharacters({ name: characterSearch })
+
+	const renderCharacterList = () => {
+		if (isPendingCharacters)
+			return (
+				<FlexBox orientation="vertical" gap="medium">
+					{Array.from({ length: itemsPerPage }, (_, i) => (
+						<SkeletonRectangle key={i} variant="rounded" height="xxl" />
+					))}
+				</FlexBox>
+			)
+		if (errorCharacters)
+			return (
+				<Text as="p">
+					Oups ! An error occured during the loading of your favorites characters, please try again or refresh the page
+				</Text>
+			)
+
+		return <CharacterList characters={characters} />
+	}
 
 	return (
 		<main className="lumx-spacing-padding-huge">
-			<List className={styles.list}>
-				{characters?.length ? (
-					characters?.map((character) => (
-						<ListItem key={character.id} size="huge" className={styles.listItem}>
-							<FlexBox orientation="horizontal" gap="medium">
-								<div className={styles.character}>
-									{character.imageUrl ? (
-										<img src={character.imageUrl} alt={character.name} />
-									) : (
-										<FlexBox className={styles.emptyImg} hAlign="center" vAlign="center">
-											No image
-										</FlexBox>
-									)}
-								</div>
-								<FlexBox orientation="vertical" gap="medium">
-									<h1>{character.name}</h1>
-									<p>{character.description}</p>
-								</FlexBox>
-							</FlexBox>
-						</ListItem>
-					))
-				) : (
-					<div>Oups ! No results</div>
-				)}
-			</List>
+			{renderCharacterList()}
 			<section>
 				<Pagination
 					itemsPerPage={itemsPerPage}
