@@ -1,14 +1,15 @@
 import { FlexBox, List, ListItem } from "@lumx/react"
 import React from "react"
 import { useGetCharacters } from "../../api/hooks/useGetCharacters"
-
+import { Pagination } from "../Pagination"
 import styles from "./Content.module.scss"
 
 export const Content: React.FC = () => {
-	const { characters } = useGetCharacters()
+	const { characters, itemsPerPage, setItemsPerPage, disabledNext, disabledPrev, totalPages, page, setPage } =
+		useGetCharacters()
 
 	return (
-		<section className="lumx-spacing-padding-huge">
+		<main className="lumx-spacing-padding-huge">
 			<List className={styles.list}>
 				{characters?.map((character) => (
 					<ListItem key={character.id} size="huge" className={styles.listItem}>
@@ -30,6 +31,17 @@ export const Content: React.FC = () => {
 					</ListItem>
 				))}
 			</List>
-		</section>
+			<section>
+				<Pagination
+					itemsPerPage={itemsPerPage}
+					setItemsPerPage={setItemsPerPage}
+					disabledNext={disabledNext}
+					disabledPrev={disabledPrev}
+					totalPages={totalPages}
+					page={page}
+					setPage={setPage}
+				/>
+			</section>
+		</main>
 	)
 }
