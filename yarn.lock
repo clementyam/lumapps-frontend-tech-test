@@ -2235,6 +2235,7 @@ __metadata:
     "@types/react": ^19.2.2
     "@types/react-dom": ^19.2.2
     "@vitejs/plugin-react": ^5.0.4
+    jotai: ^2.19.1
     jsdom: ^29.0.2
     lefthook: ^2.1.5
     lodash: ^4.17.21
@@ -2432,6 +2433,27 @@ __metadata:
   version: 4.0.0
   resolution: "isexe@npm:4.0.0"
   checksum: 2ead327ef596042ef9c9ec5f236b316acfaedb87f4bb61b3c3d574fb2e9c8a04b67305e04733bde52c24d9622fdebd3270aadb632adfbf9cadef88fe30f479e5
+  languageName: node
+  linkType: hard
+
+"jotai@npm:^2.19.1":
+  version: 2.19.1
+  resolution: "jotai@npm:2.19.1"
+  peerDependencies:
+    "@babel/core": ">=7.0.0"
+    "@babel/template": ">=7.0.0"
+    "@types/react": ">=17.0.0"
+    react: ">=17.0.0"
+  peerDependenciesMeta:
+    "@babel/core":
+      optional: true
+    "@babel/template":
+      optional: true
+    "@types/react":
+      optional: true
+    react:
+      optional: true
+  checksum: 9e1577a47e1d78a29108528aca034b530f43467f90655457b32b51b72ad430250a35c59f9deca5d8f20ab4bb4848a813f640971490d6687c51454b7f77275aad
   languageName: node
   linkType: hard
 

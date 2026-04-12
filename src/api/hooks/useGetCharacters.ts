@@ -1,11 +1,14 @@
 import { useQuery } from "@tanstack/react-query"
 import { useMemo, useState } from "react"
+
 import { Reaction } from "../../types"
-import useDebouncedSearch from "../../utils/use-debouced-search"
 import { getCharactersQueryOptions, getReactionsQueryOptions } from "../queryOptions"
 
-export const useGetCharacters = () => {
-	const { clear, input, onChange, onKeyDown, search: name } = useDebouncedSearch()
+interface UseGetCharactersParams {
+	name: string
+}
+
+export const useGetCharacters = ({ name }: UseGetCharactersParams) => {
 	const [page, setPage] = useState(1)
 	const [itemsPerPage, setItemsPerPage] = useState(4)
 
@@ -69,9 +72,5 @@ export const useGetCharacters = () => {
 		setPage,
 		itemsPerPage,
 		setItemsPerPage,
-		name: input,
-		clearName: clear,
-		onChangeName: onChange,
-		onKeyDownName: onKeyDown,
 	}
 }
