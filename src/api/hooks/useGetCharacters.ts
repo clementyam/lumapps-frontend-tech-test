@@ -1,8 +1,12 @@
 import { useQuery } from "@tanstack/react-query"
 import { useMemo, useState } from "react"
 
-import { Reaction } from "../../types"
+import { Character, Reaction } from "../../types"
 import { getCharactersQueryOptions, getReactionsQueryOptions } from "../queryOptions"
+
+export interface CharacterWithReactions extends Character {
+	reactions: Reaction[]
+}
 
 interface UseGetCharactersParams {
 	name: string
@@ -60,7 +64,7 @@ export const useGetCharacters = ({ name }: UseGetCharactersParams) => {
 	}, [charactersByPage, sortedReactionsByCharacter])
 
 	return {
-		characters: charactersWithReactions,
+		characters: charactersWithReactions as CharacterWithReactions[] | undefined,
 		totalPages,
 		disabledPrev: page === 1,
 		disabledNext: page === totalPages,
