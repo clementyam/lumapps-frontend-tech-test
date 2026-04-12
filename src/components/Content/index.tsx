@@ -1,5 +1,5 @@
-import React from 'react';
+import React from "react"
 
 export const Content: React.FC = () => {
-  return <section className="lumx-spacing-padding-huge" />;
+	return <section className="lumx-spacing-padding-huge" />
 }
