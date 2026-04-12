@@ -1,13 +1,11 @@
-import { FlexBox, SkeletonRectangle, Text } from "@lumx/react"
+import { mdiAlert } from "@lumx/icons"
+import { FlexBox, Icon, SkeletonRectangle, Text } from "@lumx/react"
 import React from "react"
 import { useGetCharacters } from "../../api/hooks/useGetCharacters"
-import { useCharacterSearch } from "../../hooks/use-characters-search"
 import { CharacterList } from "../CharacterList"
 import { Pagination } from "../Pagination"
 
 export const Content: React.FC = () => {
-	const [characterSearch] = useCharacterSearch()
-
 	const {
 		characters,
 		itemsPerPage,
@@ -19,7 +17,7 @@ export const Content: React.FC = () => {
 		setPage,
 		isPendingCharacters,
 		errorCharacters,
-	} = useGetCharacters({ name: characterSearch })
+	} = useGetCharacters()
 
 	const renderCharacterList = () => {
 		if (isPendingCharacters)
@@ -32,28 +30,32 @@ export const Content: React.FC = () => {
 			)
 		if (errorCharacters)
 			return (
-				<Text as="p">
-					Oups ! An error occured during the loading of your favorites characters, please try again or refresh the page
-				</Text>
+				<FlexBox orientation="horizontal" hAlign="center" gap="medium">
+					<Icon icon={mdiAlert} size="m" color="red" />
+					<Text as="p">
+						Oups ! An error occured during the loading of your favorites characters, please try again or refresh the
+						page
+					</Text>
+				</FlexBox>
 			)
 
-		return <CharacterList characters={characters} />
+		return (
+			<>
+				<CharacterList characters={characters} />
+				<section>
+					<Pagination
+						itemsPerPage={itemsPerPage}
+						setItemsPerPage={setItemsPerPage}
+						disabledNext={disabledNext}
+						disabledPrev={disabledPrev}
+						totalPages={totalPages}
+						page={page}
+						setPage={setPage}
+					/>
+				</section>
+			</>
+		)
 	}
 
-	return (
-		<main className="lumx-spacing-padding-huge">
-			{renderCharacterList()}
-			<section>
-				<Pagination
-					itemsPerPage={itemsPerPage}
-					setItemsPerPage={setItemsPerPage}
-					disabledNext={disabledNext}
-					disabledPrev={disabledPrev}
-					totalPages={totalPages}
-					page={page}
-					setPage={setPage}
-				/>
-			</section>
-		</main>
-	)
+	return <main className="lumx-spacing-padding-huge">{renderCharacterList()}</main>
 }
