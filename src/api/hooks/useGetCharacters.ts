@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import { useMemo, useState } from "react"
-
+import { useCharacterSearch } from "../../hooks/use-characters-search"
 import { Character, Reaction } from "../../types"
 import { getCharactersQueryOptions, getReactionsQueryOptions } from "../queryOptions"
 
@@ -8,11 +8,9 @@ export interface CharacterWithReactions extends Character {
 	reactions: Reaction[]
 }
 
-interface UseGetCharactersParams {
-	name: string
-}
+export const useGetCharacters = () => {
+	const [characterSearch] = useCharacterSearch()
 
-export const useGetCharacters = ({ name }: UseGetCharactersParams) => {
 	const [page, setPage] = useState(1)
 	const [itemsPerPage, setItemsPerPage] = useState(4)
 
@@ -45,8 +43,10 @@ export const useGetCharacters = ({ name }: UseGetCharactersParams) => {
 	}, [dataReactions?.reactions])
 
 	const charactersByName = useMemo(() => {
-		return dataCharacters?.results.filter((character) => character.name.toLowerCase().includes(name.toLowerCase()))
-	}, [dataCharacters, name])
+		return dataCharacters?.results.filter((character) =>
+			character.name.toLowerCase().includes(characterSearch.toLowerCase()),
+		)
+	}, [dataCharacters, characterSearch])
 
 	const totalPages = useMemo(() => {
 		return charactersByName && Math.ceil(charactersByName.length / itemsPerPage)
