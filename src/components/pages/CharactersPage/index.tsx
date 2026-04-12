@@ -1,10 +1,10 @@
 import { FlexBox, Message, SkeletonRectangle, Text } from "@lumx/react"
 import React from "react"
 import { useGetCharacters } from "../../../api/hooks/useGetCharacters"
-import { CharacterList } from "../../Character/CharacterList"
+import { CharacterList } from "../../Characters/CharacterList"
 import { Pagination } from "../../ui/Pagination"
 
-export const CharacterPage: React.FC = () => {
+export const CharactersPage: React.FC = () => {
 	const {
 		characters,
 		itemsPerPage,
