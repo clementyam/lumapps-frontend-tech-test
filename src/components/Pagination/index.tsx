@@ -69,7 +69,9 @@ export const Pagination: React.FC<PaginationProps> = ({
 						</Button>
 					</li>
 					<li>
-						<span aria-current="page">{page}</span>
+						<span aria-current="page">
+							<b>{page}</b>
+						</span>
 					</li>
 					<li>
 						<Button disabled={disabledNext} onClick={() => setPage((prev) => prev + 1)} aria-label="go to next page">
