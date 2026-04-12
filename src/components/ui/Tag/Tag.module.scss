@@ -1,0 +1,10 @@
+.tag {
+    padding: 0.25rem 1rem;
+    background-color: rgba(36, 91, 231, 0.10);
+    border-radius: 1rem;
+    border: 1px solid rgba(36, 91, 231, 0.40);
+
+    &.blue { background-color: rgba(36, 91, 231, 0.10); border: 1px solid rgba(36, 91, 231, 0.40); }
+    &.yellow { background-color: rgba(255, 196, 37, 0.10); border: 1px solid rgba(255, 196, 37, 0.40); }
+    &.green { background-color: rgba(19, 134, 105, 0.10); border: 1px solid rgba(19, 134, 105, 0.40); }
+}
