@@ -1,0 +1,11 @@
+pre-commit:
+  commands:
+    ts-check:
+      run: npx tsc --noEmit
+    biome-check:
+      glob: "*.{js,ts,jsx,tsx,json,css}"
+      run: npx @biomejs/biome check --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {staged_files}
+pre-push:
+  commands:
+    rtl-tests:
+      run: yarn test run
