@@ -48,6 +48,7 @@
 		"@lumx/icons": "^3.18.0",
 		"@lumx/react": "^4.10.0",
 		"@tanstack/react-query": "^5.97.0",
+		"jotai": "^2.19.1",
 		"lodash": "^4.17.21",
 		"moment": "^2.30.1",
 		"moment-range": "^4.0.2",

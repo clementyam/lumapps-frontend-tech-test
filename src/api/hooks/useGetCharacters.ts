@@ -1,11 +1,16 @@
 import { useQuery } from "@tanstack/react-query"
 import { useMemo, useState } from "react"
-import { Reaction } from "../../types"
-import useDebouncedSearch from "../../utils/use-debouced-search"
+import { useCharacterSearch } from "../../hooks/use-characters-search"
+import { Character, Reaction } from "../../types"
 import { getCharactersQueryOptions, getReactionsQueryOptions } from "../queryOptions"
 
+export interface CharacterWithReactions extends Character {
+	reactions: Reaction[]
+}
+
 export const useGetCharacters = () => {
-	const { clear, input, onChange, onKeyDown, search: name } = useDebouncedSearch()
+	const [characterSearch] = useCharacterSearch()
+
 	const [page, setPage] = useState(1)
 	const [itemsPerPage, setItemsPerPage] = useState(4)
 
@@ -38,8 +43,10 @@ export const useGetCharacters = () => {
 	}, [dataReactions?.reactions])
 
 	const charactersByName = useMemo(() => {
-		return dataCharacters?.results.filter((character) => character.name.toLowerCase().includes(name.toLowerCase()))
-	}, [dataCharacters, name])
+		return dataCharacters?.results.filter((character) =>
+			character.name.toLowerCase().includes(characterSearch.toLowerCase()),
+		)
+	}, [dataCharacters, characterSearch])
 
 	const totalPages = useMemo(() => {
 		return charactersByName && Math.ceil(charactersByName.length / itemsPerPage)
@@ -57,7 +64,7 @@ export const useGetCharacters = () => {
 	}, [charactersByPage, sortedReactionsByCharacter])
 
 	return {
-		characters: charactersWithReactions,
+		characters: charactersWithReactions as CharacterWithReactions[] | undefined,
 		totalPages,
 		disabledPrev: page === 1,
 		disabledNext: page === totalPages,
@@ -69,9 +76,5 @@ export const useGetCharacters = () => {
 		setPage,
 		itemsPerPage,
 		setItemsPerPage,
-		name: input,
-		clearName: clear,
-		onChangeName: onChange,
-		onKeyDownName: onKeyDown,
 	}
 }

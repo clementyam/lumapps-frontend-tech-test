@@ -1,0 +1,38 @@
+@use "../../../breakpoints.scss" as *;
+
+.listItem {
+    padding: 1rem;
+    border: 1px;
+    border-style: solid;
+    border-color: gray;
+    border-radius: 1rem;
+    margin: 1rem 0;
+
+    
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        @media (min-width: $tablet-breakpoint) {
+            flex-direction: row;
+        }
+
+        .character {
+            margin: 0 auto;
+            img {
+                height: 12rem;
+            }
+        }
+
+        .informations {
+            flex: 1;
+        }
+    }
+    
+    .emptyImg {
+        height: 12rem;
+        width: 12rem;
+        background-color: gray;
+    }
+    }    
