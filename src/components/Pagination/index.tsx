@@ -28,7 +28,14 @@ export const Pagination: React.FC<PaginationProps> = ({
 	const toggleSelect = () => setOpen(!isOpen)
 
 	return (
-		<FlexBox orientation="horizontal" vAlign="space-between" hAlign="bottom" className={styles.pagination}>
+		<FlexBox
+			orientation="horizontal"
+			vAlign="space-between"
+			hAlign="bottom"
+			className={styles.pagination}
+			wrap
+			gap="medium"
+		>
 			<Select
 				isOpen={isOpen}
 				value={itemsPerPage.toString()}

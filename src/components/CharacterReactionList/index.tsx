@@ -9,7 +9,7 @@ interface ReactionListProps {
 
 export const ReactionList: React.FC<ReactionListProps> = ({ reactions }) => {
 	return (
-		<FlexBox orientation="horizontal" as={List} gap="medium">
+		<FlexBox orientation="horizontal" as={List} gap="medium" wrap>
 			{reactions.map((reaction) => (
 				<ReactionItem key={`reaction-${reaction.id}`} reaction={reaction} />
 			))}

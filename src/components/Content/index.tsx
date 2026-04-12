@@ -39,6 +39,7 @@ export const Content: React.FC = () => {
 
 		return (
 			<>
+				<h1>Characters list :</h1>
 				<CharacterList characters={characters} />
 				<section>
 					<Pagination

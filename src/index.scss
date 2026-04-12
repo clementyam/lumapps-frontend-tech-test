@@ -1,5 +1,8 @@
 @import '@lumx/core/scss/lumx.scss';
 
+$mobile-breakpoint: 426px;
+$tablet-breakpoint: 768px;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

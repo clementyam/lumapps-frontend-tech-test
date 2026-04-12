@@ -1,18 +1,30 @@
- .listItem {
-        padding: 1rem;
-        border: 1px;
-        border-style: solid;
-        border-color: gray;
-        border-radius: 1rem;
-        margin: 1rem 0;
+.listItem {
+    padding: 1rem;
+    border: 1px;
+    border-style: solid;
+    border-color: gray;
+    border-radius: 1rem;
+    margin: 1rem 0;
 
-        .character img {
+    .character {
+        margin: 0 auto;
+        img {
             height: 12rem;
         }
-        
-        .emptyImg {
-            height: 12rem;
-            width: 12rem;
-            background-color: gray;
+    }
+
+    .informations {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        @media (min-width: $tablet-breakpoint) {
+            flex-direction: row;
         }
+    }
+    
+    .emptyImg {
+        height: 12rem;
+        width: 12rem;
+        background-color: gray;
+    }
     }    
