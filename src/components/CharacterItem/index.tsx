@@ -1,6 +1,7 @@
 import { FlexBox, ListItem, Text } from "@lumx/react"
 import React from "react"
 import { CharacterWithReactions } from "../../api/hooks/useGetCharacters"
+import { ReactionList } from "../CharacterReactionList"
 import styles from "./CharacterItem.module.scss"
 
 interface CharacterItemProps {
@@ -23,6 +24,7 @@ export const CharacterItem: React.FC<CharacterItemProps> = ({ character }) => {
 				<FlexBox orientation="vertical" gap="medium">
 					<h1>{character.name}</h1>
 					<Text as="p">{character.description}</Text>
+					<ReactionList reactions={character.reactions} />
 				</FlexBox>
 			</FlexBox>
 		</ListItem>

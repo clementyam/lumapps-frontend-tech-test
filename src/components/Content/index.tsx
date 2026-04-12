@@ -1,5 +1,4 @@
-import { mdiAlert } from "@lumx/icons"
-import { FlexBox, Icon, SkeletonRectangle, Text } from "@lumx/react"
+import { FlexBox, Message, SkeletonRectangle, Text } from "@lumx/react"
 import React from "react"
 import { useGetCharacters } from "../../api/hooks/useGetCharacters"
 import { CharacterList } from "../CharacterList"
@@ -30,13 +29,12 @@ export const Content: React.FC = () => {
 			)
 		if (errorCharacters)
 			return (
-				<FlexBox orientation="horizontal" hAlign="center" gap="medium">
-					<Icon icon={mdiAlert} size="m" color="red" />
+				<Message kind="error" hasBackground>
 					<Text as="p">
 						Oups ! An error occured during the loading of your favorites characters, please try again or refresh the
 						page
 					</Text>
-				</FlexBox>
+				</Message>
 			)
 
 		return (
