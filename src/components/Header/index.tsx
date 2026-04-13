@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
 
 	useEffect(() => {
 		setCharacterSearch(debouncedValue)
-	}, [debouncedValue, setCharacterSearch])
+	}, [debouncedValue])
 
 	return (
 		<header className={styles.header}>
