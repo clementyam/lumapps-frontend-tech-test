@@ -21,9 +21,9 @@ export const CharactersPage: React.FC = () => {
 	const renderCharacterList = () => {
 		if (isPendingCharacters)
 			return (
-				<FlexBox orientation="vertical" gap="medium">
+				<FlexBox orientation="vertical" gap="medium" aria-busy="true">
 					{Array.from({ length: itemsPerPage }, (_, i) => (
-						<SkeletonRectangle key={i} variant="rounded" height="xxl" />
+						<SkeletonRectangle key={i} variant="rounded" height="xxl" aria-hidden="true" />
 					))}
 				</FlexBox>
 			)
@@ -43,15 +43,17 @@ export const CharactersPage: React.FC = () => {
 				<section>
 					<CharacterList characters={characters} />
 
-					<Pagination
-						itemsPerPage={itemsPerPage}
-						setItemsPerPage={setItemsPerPage}
-						disabledNext={disabledNext}
-						disabledPrev={disabledPrev}
-						totalPages={totalPages}
-						page={page}
-						setPage={setPage}
-					/>
+					{!!characters?.length && (
+						<Pagination
+							itemsPerPage={itemsPerPage}
+							setItemsPerPage={setItemsPerPage}
+							disabledNext={disabledNext}
+							disabledPrev={disabledPrev}
+							totalPages={totalPages}
+							page={page}
+							setPage={setPage}
+						/>
+					)}
 				</section>
 			</>
 		)

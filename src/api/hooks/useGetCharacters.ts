@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useCharacterSearch } from "../../hooks/use-characters-search"
 import { Character, Reaction } from "../../types"
 import { getCharactersQueryOptions, getReactionsQueryOptions } from "../queryOptions"
@@ -44,7 +44,7 @@ export const useGetCharacters = () => {
 
 	const charactersByName = useMemo(() => {
 		return dataCharacters?.results.filter((character) =>
-			character.name.toLowerCase().includes(characterSearch.toLowerCase()),
+			character.name.toLowerCase().includes(characterSearch.trim().toLowerCase()),
 		)
 	}, [dataCharacters, characterSearch])
 
@@ -62,6 +62,10 @@ export const useGetCharacters = () => {
 			reactions: sortedReactionsByCharacter?.[character.id] || [],
 		}))
 	}, [charactersByPage, sortedReactionsByCharacter])
+
+	useEffect(() => {
+		setPage(1)
+	}, [characterSearch])
 
 	return {
 		characters: charactersWithReactions as CharacterWithReactions[] | undefined,

@@ -4,7 +4,13 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
 import { Header } from "../Header"
 import { CharactersPage } from "../pages/CharactersPage"
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			staleTime: 1000 * 60 * 5, // 5 minutes
+		},
+	},
+})
 
 export const App: React.FC = () => {
 	return (
