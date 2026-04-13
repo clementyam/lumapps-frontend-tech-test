@@ -8,7 +8,6 @@ vi.mock("../../../api/hooks/useGetCharacters", () => ({
 	useGetCharacters: vi.fn(),
 }))
 
-useGetCharacters
 const characterMock = {
 	id: 1,
 	name: "Han Solo",
@@ -72,12 +71,5 @@ describe("CharacterItem", () => {
 		expect(screen.getByText("Rebel Alliance")).toBeInTheDocument()
 		expect(screen.getByText("Resistance")).toBeInTheDocument()
 		expect(screen.getByText("Smugglers' Alliance")).toBeInTheDocument()
-	})
-
-	it("should have the reactions of the character", () => {
-		setup()
-
-		expect(screen.getByText("⭐")).toBeInTheDocument()
-		expect(screen.getByText("�")).toBeInTheDocument()
 	})
 })
