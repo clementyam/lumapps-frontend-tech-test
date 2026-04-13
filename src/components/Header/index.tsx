@@ -22,7 +22,7 @@ export const Header: React.FC = () => {
 			<FlexBox className={styles.logo} hAlign="center" orientation="horizontal" vAlign="space-between">
 				<Thumbnail alt="My Static App Logo" className={styles.logo} image={logo} />
 
-				<TextField icon={mdiMagnify} label="Search" onChange={setInput} on theme={Theme.light} />
+				<TextField icon={mdiMagnify} label="Search" onChange={setInput} theme={Theme.light} />
 			</FlexBox>
 		</header>
 	)
