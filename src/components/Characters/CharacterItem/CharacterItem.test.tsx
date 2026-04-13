@@ -1,8 +1,14 @@
 import { render, screen } from "@testing-library/react"
 import React from "react"
-import { describe, expect, it } from "vitest"
+import { describe, expect, it, vi } from "vitest"
+import { useGetCharacters } from "../../../api/hooks/useGetCharacters"
 import { CharacterItem } from "."
 
+vi.mock("../../../api/hooks/useGetCharacters", () => ({
+	useGetCharacters: vi.fn(),
+}))
+
+useGetCharacters
 const characterMock = {
 	id: 1,
 	name: "Han Solo",
@@ -19,6 +25,13 @@ const characterMock = {
 }
 
 const setup = () => {
+	const useGetCharactersMock = vi.mocked(useGetCharacters)
+
+	useGetCharactersMock.mockReturnValue({
+		isPendingReactions: false,
+		errorReactions: null,
+	} as ReturnType<typeof useGetCharacters>)
+
 	const utils = render(<CharacterItem character={characterMock} />)
 
 	return {
