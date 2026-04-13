@@ -2,13 +2,9 @@
 
 .listItem {
     padding: 1rem;
-    border: 1px;
-    border-style: solid;
-    border-color: gray;
-    border-radius: 1rem;
     margin: 1rem 0;
 
-    
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 
     .container {
         display: flex;
@@ -35,4 +31,4 @@
         width: 12rem;
         background-color: gray;
     }
-    }    
+}    
