@@ -18,7 +18,7 @@ export const CharacterReactionList: React.FC<CharacterReactionListProps> = ({ re
 			</Message>
 		)
 
-	if (isPendingReactions) return <SkeletonRectangle variant="rounded" height="m" width="xxl" />
+	if (isPendingReactions) return <SkeletonRectangle aria-busy="true" variant="rounded" height="m" width="xxl" />
 
 	return (
 		<FlexBox orientation="horizontal" as={List} gap="medium" wrap>
