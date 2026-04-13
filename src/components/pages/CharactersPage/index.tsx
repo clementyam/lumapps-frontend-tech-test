@@ -43,15 +43,17 @@ export const CharactersPage: React.FC = () => {
 				<section>
 					<CharacterList characters={characters} />
 
-					<Pagination
-						itemsPerPage={itemsPerPage}
-						setItemsPerPage={setItemsPerPage}
-						disabledNext={disabledNext}
-						disabledPrev={disabledPrev}
-						totalPages={totalPages}
-						page={page}
-						setPage={setPage}
-					/>
+					{!!characters?.length && (
+						<Pagination
+							itemsPerPage={itemsPerPage}
+							setItemsPerPage={setItemsPerPage}
+							disabledNext={disabledNext}
+							disabledPrev={disabledPrev}
+							totalPages={totalPages}
+							page={page}
+							setPage={setPage}
+						/>
+					)}
 				</section>
 			</>
 		)
