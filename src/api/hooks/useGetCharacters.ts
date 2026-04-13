@@ -44,7 +44,7 @@ export const useGetCharacters = () => {
 
 	const charactersByName = useMemo(() => {
 		return dataCharacters?.results.filter((character) =>
-			character.name.toLowerCase().includes(characterSearch.toLowerCase()),
+			character.name.toLowerCase().includes(characterSearch.trim().toLowerCase()),
 		)
 	}, [dataCharacters, characterSearch])
 
