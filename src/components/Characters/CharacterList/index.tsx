@@ -1,6 +1,7 @@
 import { List } from "@lumx/react"
 import React from "react"
-import { CharacterWithReactions } from "../../../api/hooks/useGetCharacters"
+
+import { CharacterWithReactions } from "../../../types"
 import { CharacterItem } from "../CharacterItem"
 
 interface CharacterListProps {

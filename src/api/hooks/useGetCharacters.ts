@@ -1,12 +1,9 @@
 import { useQuery } from "@tanstack/react-query"
 import { useEffect, useMemo, useState } from "react"
-import { useCharacterSearch } from "../../hooks/use-characters-search"
-import { Character, Reaction } from "../../types"
-import { getCharactersQueryOptions, getReactionsQueryOptions } from "../queryOptions"
 
-export interface CharacterWithReactions extends Character {
-	reactions: Reaction[]
-}
+import { useCharacterSearch } from "../../hooks/use-characters-search"
+import { CharacterWithReactions, Reaction } from "../../types"
+import { getCharactersQueryOptions, getReactionsQueryOptions } from "../queryOptions"
 
 export const useGetCharacters = () => {
 	const [characterSearch] = useCharacterSearch()

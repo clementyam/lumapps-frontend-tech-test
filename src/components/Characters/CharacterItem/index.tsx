@@ -1,6 +1,7 @@
 import { FlexBox, ListItem, Text } from "@lumx/react"
 import React from "react"
-import { CharacterWithReactions } from "../../../api/hooks/useGetCharacters"
+
+import { CharacterWithReactions } from "../../../types"
 import { Tag } from "../../ui/Tag"
 import { CharacterReactionList } from "../CharacterReactionList"
 import styles from "./CharacterItem.module.scss"
@@ -17,7 +18,7 @@ export const CharacterItem: React.FC<CharacterItemProps> = ({ character }) => {
 					{character.imageUrl ? (
 						<img src={character.imageUrl} alt={character.name} />
 					) : (
-						<FlexBox className={styles.emptyImg} hAlign="center" vAlign="center">
+						<FlexBox aria-hidden="true" className={styles.emptyImg} hAlign="center" vAlign="center">
 							No image
 						</FlexBox>
 					)}

@@ -23,3 +23,7 @@ export interface ApiPaginatedResponse<T> {
 	next: number | null
 	previous: number | null
 }
+
+export interface CharacterWithReactions extends Character {
+	reactions: Reaction[]
+}
