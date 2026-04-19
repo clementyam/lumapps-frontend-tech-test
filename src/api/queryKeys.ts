@@ -1,5 +1,7 @@
+import { GetCharactersParams } from "../types"
+
 export const charactersQueryKeys = {
-	all: ["characters"] as const,
+	all: (params?: GetCharactersParams) => ["characters", params] as const,
 }
 
 export const reactionsQueryKeys = {

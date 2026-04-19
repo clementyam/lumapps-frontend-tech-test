@@ -15,7 +15,9 @@ export const useGetCharacters = () => {
 		data: dataCharacters,
 		error: errorCharacters,
 		isPending: isPendingCharacters,
-	} = useQuery(getCharactersQueryOptions)
+	} = useQuery(
+		getCharactersQueryOptions({ page: page.toString(), limit: itemsPerPage.toString(), name: characterSearch }),
+	)
 
 	const {
 		data: dataReactions,
@@ -39,26 +41,26 @@ export const useGetCharacters = () => {
 		}, {})
 	}, [dataReactions?.reactions])
 
-	const charactersByName = useMemo(() => {
-		return dataCharacters?.results.filter((character) =>
-			character.name.toLowerCase().includes(characterSearch.trim().toLowerCase()),
-		)
-	}, [dataCharacters, characterSearch])
+	// const charactersByName = useMemo(() => {
+	// 	return dataCharacters?.results.filter((character) =>
+	// 		character.name.toLowerCase().includes(characterSearch.trim().toLowerCase()),
+	// 	)
+	// }, [dataCharacters, characterSearch])
 
-	const totalPages = useMemo(() => {
-		return charactersByName && Math.ceil(charactersByName.length / itemsPerPage)
-	}, [charactersByName, itemsPerPage])
+	// const totalPages = useMemo(() => {
+	// 	return charactersByName && Math.ceil(charactersByName.length / itemsPerPage)
+	// }, [charactersByName, itemsPerPage])
 
-	const charactersByPage = useMemo(() => {
-		return charactersByName?.slice((page - 1) * itemsPerPage, (page - 1) * itemsPerPage + itemsPerPage)
-	}, [charactersByName, page, itemsPerPage])
+	// const charactersByPage = useMemo(() => {
+	// 	return charactersByName?.slice((page - 1) * itemsPerPage, (page - 1) * itemsPerPage + itemsPerPage)
+	// }, [charactersByName, page, itemsPerPage])
 
 	const charactersWithReactions = useMemo(() => {
-		return charactersByPage?.map((character) => ({
+		return dataCharacters?.results.map((character) => ({
 			...character,
 			reactions: sortedReactionsByCharacter?.[character.id] || [],
 		}))
-	}, [charactersByPage, sortedReactionsByCharacter])
+	}, [dataCharacters, sortedReactionsByCharacter])
 
 	useEffect(() => {
 		setPage(1)
@@ -66,9 +68,9 @@ export const useGetCharacters = () => {
 
 	return {
 		characters: charactersWithReactions as CharacterWithReactions[] | undefined,
-		totalPages,
-		disabledPrev: page === 1,
-		disabledNext: page === totalPages,
+		totalPages: dataCharacters && Math.ceil(dataCharacters.total / dataCharacters.limit),
+		disabledPrev: !dataCharacters?.previous,
+		disabledNext: !dataCharacters?.next,
 		errorCharacters,
 		isPendingCharacters,
 		errorReactions,

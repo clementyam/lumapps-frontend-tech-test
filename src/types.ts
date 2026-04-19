@@ -15,6 +15,12 @@ export interface Reaction {
 	deleted: boolean
 }
 
+export interface GetCharactersParams {
+	page: string
+	limit: string
+	name?: string
+}
+
 export interface ApiPaginatedResponse<T> {
 	results: T[]
 	total: number
